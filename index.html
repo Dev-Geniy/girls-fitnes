@@ -1,200 +1,58 @@
-/* Основной стиль */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
+<html lang="ru">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фитнес-тренировки для женщин</title>
+    <!-- Основной фавикон -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Для iOS (Apple Touch Icon) -->
+    <link rel="apple-touch-icon" href="favicon.ico">
+    <!-- Для Android и других платформ -->
+    <link rel="icon" sizes="192x192" href="favicon.ico">
+    <!-- Для Windows Phone -->
+    <meta name="msapplication-TileImage" content="favicon.ico">
+    <meta name="msapplication-TileColor" content="#000000">  
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="background-image"></div>
+  <div class="container">
+  <header>
+      <h1>Фитнес для девушек</h1>
+      <p>Ежедневно заходите и получайте новые упражнения по специально разработанной программе!</p>
+  </header>
 
-/* Скрыть только скролл-бар, но оставить возможность прокручивать */
-::-webkit-scrollbar {
-    display: none;
-}
+      <div id="workout-container">
+        <div id="workout-today" class="workout-today"></div>
+          
+      <div class="progress-container">
+        <div class="progress-bar">
+           <span id="progress-text">Прогресс бар тренировки: 0%</span>
+           <div class="progress"></div>
+        </div>
+      </div>
+       
+      <div id="exercise-list" class="exercise-list"> 
+      <!-- Карточки упражнений будут вставлены здесь -->
+      </div>
+         
+      <!-- Слой для затемнения и отображения совета -->
+      <div id="overlay">
+      <div id="advice-container" class="advice-container">
+      <!-- Советы будут вставлены сюда -->
+      </div>
 
-#background-image {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: url("https://kartinki.pics/pics/uploads/posts/2022-08/1660940246_1-kartinkin-net-p-oboi-fitnes-krasivo-2.jpg") no-repeat center center;
-  background-size: cover;
-  z-index: -2;
-}
-
-/* Затемнение */
-#background-image::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* 40% затемнения */
-}
-
-/* Контейнер для всего контента */
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    position: relative;
-    z-index: 1;
-}
-
-/* Заголовок */
-header h1 {
-    font-size: 32px;
-    margin-bottom: 10px;
-    color: #fff;
-}
-
-header p {
-    font-size: 18px;
-    color: #fff;
-}
-
-/* Карточки упражнений */
-.exercise-list {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-}
-
-.exercise-card {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.exercise-card h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #999;
-}
-
-.exercise-card p {
-    font-size: 16px;
-    color: #666;
-}
-
-.exercise-card button {
-    padding: 10px 15px;
-    background-color: #1e90ff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.exercise-card button.disabled {
-    background-color: #d3d3d3;
-    cursor: not-allowed;
-}
-
-/* Прогресс-бар */
-/* Контейнер для прогресс-бара */
-.progress-container {
-    width: 100%;
-    margin-top: 20px;
-    position: relative;
-}
-
-/* Прогресс-бар */
-.progress-bar {
-    width: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    height: 30px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Текст, который будет сверху прогресса, но внутри бара */
-#progress-text {
-    position: absolute;
-    font-size: 16px;
-    color: #fff;
-    z-index: 1; /* Размещаем текст выше, но внутри */
-}
-
-/* Заполняемая часть прогресс-бара */
-.progress {
-    height: 100%;
-    background-color: #1e90ff;
-    width: 0%;
-    border-radius: 10px;
-    transition: width 0.5s ease-in-out;
-}
-
-
-/* Слой затемнения (overlay) для совета */
-/* Слой затемнения для совета */
-#overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Затемнение */
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-}
-
-/* Контейнер совета */
-#advice-container {
-    color: white;
-    font-size: 24px;
-    text-align: center;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    width: 80%;
-    max-width: 500px;
-    margin: auto;
-}
-
-/* Рекламный блок внизу экрана */
-.ad-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 10px;
-    text-align: center;
-    z-index: 3; /* Рекламный блок выше совета */
-    display: none; /* Скрыт по умолчанию */
-}
-
-.ad-banner p {
-    margin: 10px 0;
-    font-size: 16px;
-    text-align: left;
-}
-
-
-#ad-close-btn {
-    background-color: rgba(255, 69, 0, 0.1); 
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    margin-top: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-
-.workout-today {
-    font-size: 2em;
-    font-weight: bold;
-    color: #1e90ff;
-    text-align: center;
-    margin-bottom: 20px;
-}
+      <!-- Рекламный блок в нижней части -->
+      <div id="ad-banner" class="ad-banner">
+        <p><strong>Наши тренинги в бесплатном доступe:</strong></p>
+        <p>Coach 10 дней | 5 минут в день<strong> - <a href="https://dev-geniy.github.io/lp/" target="_blank">"Путь Тимлида"</a></strong></p>
+        <p>Coach 10 дней | 5 минут в день<strong> - <a href="https://dev-geniy.github.io/lr/" target="_blank">"Личностный Рост"</a></strong></p>
+        <button id="ad-close-btn" onclick="closeAdBanner()">Скрыть анонс</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+    <script src="script.js"></script>
+</body>
+</html>
