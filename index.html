@@ -1,42 +1,200 @@
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Фитнес-тренировки для женщин</title>
-  
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<video autoplay muted loop id="background-video">
-    <source src="video.mp4" type="video/mp4">
-    Ваш браузер не поддерживает видео.
-</video>
-  
-      <div class="container">
-        <header>
-            <h1>Фитнес для девушек</h1>
-            <p>Ежедневно заходите и получайте новые упражнения по специально разработанной программе!</p>
-        </header>
+/* Основной стиль */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
-        <div id="workout-container">
-            <div id="workout-today" class="workout-today"></div>
-            <div id="exercise-list" class="exercise-list"> 
-                <!-- Карточки упражнений будут вставлены здесь -->
-            </div>
-         
-            <div class="progress-bar">
-                <div class="progress"></div>
-            </div>
-         
-            <!-- Слой для затемнения и отображения совета -->
-            <div id="overlay">
-                <div id="advice-container" class="advice-container">
-                    <!-- Советы будут вставлены сюда -->
-                </div>
-            </div>
-        </div>
-    </div>
-  
-    <script src="script.js"></script>
-</body>
-</html>
+/* Скрыть только скролл-бар, но оставить возможность прокручивать */
+::-webkit-scrollbar {
+    display: none;
+}
+
+#background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url("https://kartinki.pics/pics/uploads/posts/2022-08/1660940246_1-kartinkin-net-p-oboi-fitnes-krasivo-2.jpg") no-repeat center center;
+  background-size: cover;
+  z-index: -2;
+}
+
+/* Затемнение */
+#background-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* 40% затемнения */
+}
+
+/* Контейнер для всего контента */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Заголовок */
+header h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+header p {
+    font-size: 18px;
+    color: #fff;
+}
+
+/* Карточки упражнений */
+.exercise-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.exercise-card {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.exercise-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #999;
+}
+
+.exercise-card p {
+    font-size: 16px;
+    color: #666;
+}
+
+.exercise-card button {
+    padding: 10px 15px;
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.exercise-card button.disabled {
+    background-color: #d3d3d3;
+    cursor: not-allowed;
+}
+
+/* Прогресс-бар */
+/* Контейнер для прогресс-бара */
+.progress-container {
+    width: 100%;
+    margin-top: 20px;
+    position: relative;
+}
+
+/* Прогресс-бар */
+.progress-bar {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    height: 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Текст, который будет сверху прогресса, но внутри бара */
+#progress-text {
+    position: absolute;
+    font-size: 16px;
+    color: #fff;
+    z-index: 1; /* Размещаем текст выше, но внутри */
+}
+
+/* Заполняемая часть прогресс-бара */
+.progress {
+    height: 100%;
+    background-color: #1e90ff;
+    width: 0%;
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out;
+}
+
+
+/* Слой затемнения (overlay) для совета */
+/* Слой затемнения для совета */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Затемнение */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+/* Контейнер совета */
+#advice-container {
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    margin: auto;
+}
+
+/* Рекламный блок внизу экрана */
+.ad-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    z-index: 3; /* Рекламный блок выше совета */
+    display: none; /* Скрыт по умолчанию */
+}
+
+.ad-banner p {
+    margin: 10px 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+
+#ad-close-btn {
+    background-color: rgba(255, 69, 0, 0.1); 
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+.workout-today {
+    font-size: 2em;
+    font-weight: bold;
+    color: #1e90ff;
+    text-align: center;
+    margin-bottom: 20px;
+}
