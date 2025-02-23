@@ -1,8 +1,14 @@
-/* Основной стиль */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    background: radial-gradient(circle at top, #1a1a2e, #0f0f1b);
     margin: 0;
     padding: 0;
+    height: 100%;
+    color: #fff;
+    overflow-x: hidden;
 }
 
 /* Скрыть только скролл-бар, но оставить возможность прокручивать */
@@ -10,207 +16,142 @@ body {
     display: none;
 }
 
-#background-image {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: url("https://kartinki.pics/pics/uploads/posts/2022-08/1660940246_1-kartinkin-net-p-oboi-fitnes-krasivo-2.jpg") no-repeat center center;
-  background-size: cover;
-  z-index: -2;
+/* Контейнер для фона с видео */
+        .background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Чтобы видео полностью покрывало экран */
+            z-index: -1; /* Видео будет на заднем фоне */
+        }
+
+#main-screen, #workout-screen {
+    padding: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
 }
 
-/* Затемнение */
-#background-image::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* 50% затемнения */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Контейнер для всего контента */
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    position: relative;
-    z-index: 1;
-}
-
-
-/* Заголовок */
-header h1 {
-    font-size: 32px;
-    margin-bottom: 10px;
-    color: #fff;
-}
-
-header p {
-    font-size: 18px;
-    color: #fff;
-}
-
-.text {
-    font-size: 16px;
-    color: #9f9f9f;
-}
-
-/* Карточки упражнений */
-.exercise-list {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-}
-
-.exercise-card {
-    background: rgba(0, 0, 0, 0.7);
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.exercise-card h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #999;
-}
-
-.exercise-card p {
-    font-size: 16px;
-    color: #666;
-}
-
-.exercise-card button {
-    padding: 10px 15px;
-    background-color: #1e90ff;
-    color: white;
+button {
+    padding: 12px 25px;
+    margin: 15px;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 30px;
+    background: linear-gradient(45deg, #ff00ff, #a000c0);
+    color: white;
+    box-shadow: 0px 4px 15px rgba(255, 0, 255, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.exercise-card button.disabled {
-    background-color: #d3d3d3;
-    cursor: not-allowed;
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 8px 20px rgba(255, 0, 255, 0.8);
 }
 
-/* Прогресс-бар */
-/* Контейнер для прогресс-бара */
-.progress-container {
-    width: 100%;
-    margin-top: 20px;
-    position: relative;
+#progress-container {
+    width: 80%;
+    background: rgba(255, 255, 255, 0.1);
+    height: 20px;
+    border-radius: 15px;
+    margin: 20px auto;
+    overflow: hidden;
+    box-shadow: 0px 4px 15px rgba(0, 255, 255, 0.3);
 }
 
-/* Прогресс-бар */
-.progress-bar {
-    width: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    height: 30px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Текст, который будет сверху прогресса, но внутри бара */
-#progress-text {
-    position: absolute;
-    font-size: 16px;
-    color: #fff;
-    z-index: 1; /* Размещаем текст выше, но внутри */
-}
-
-/* Заполняемая часть прогресс-бара */
-.progress {
+#progress-bar {
     height: 100%;
-    background-color: #1e90ff;
     width: 0%;
-    border-radius: 10px;
+    background: linear-gradient(90deg, #ff0080, #ff00ff);
     transition: width 0.5s ease-in-out;
 }
 
-
-/* Слой затемнения (overlay) для совета */
-/* Слой затемнения для совета */
-#overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Затемнение */
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-}
-
-/* Контейнер совета */
-#advice-container {
-    color: white;
-    font-size: 24px;
-    text-align: center;
+.exercise-card {
+    background: rgba(255, 255, 255, 0.05);
     padding: 20px;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
+    margin: 15px auto;
     width: 80%;
-    max-width: 500px;
-    margin: auto;
+    border-radius: 15px;
+    box-shadow: 0px 4px 20px rgba(0, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s, background 0.3s;
 }
 
-/* Рекламный блок внизу экрана */
-.ad-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 10px;
+.exercise-card.completed {
+    background: rgba(60, 60, 60, 0.1); /* Темновато-серый фон */
+    transform: scale(1.05);
+}
+
+.exercise-card.completed h3, 
+.exercise-card.completed p {
+    color: lightgray; /* Светло-серый текст */
+}
+
+.exercise-card.completed .complete-btn {
+    background: #ccc; /* Нейтральная кнопка */
+    cursor: not-allowed;
+}
+
+.exercise-card.completed .complete-btn:hover {
+    background: #ccc; /* Нейтральная кнопка */
+    cursor: not-allowed;
+    box-shadow: 0px 4px 15px rgba(255, 0, 255, 0.5);
+    transform: scale(1.0);
+}
+
+.exercise-card .complete-btn {
+    background: linear-gradient(45deg, #ff00ff, #a000c0);
+    transition: background 0.3s ease;
+}
+
+.exercise-card .complete-btn:hover {
+    background: #a000c0; /* Бледный оттенок сиреневого для нейтральных кнопок */
+}
+
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.day {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
     text-align: center;
-    z-index: 3; /* Рекламный блок выше совета */
-    display: none; /* Скрыт по умолчанию */
-}
-
-.ad-banner p {
-    margin: 10px 0;
-    font-size: 16px;
-    text-align: left;
-}
-
-/* Стиль для ссылок в рекламном блоке */
-#ad-banner a {
-    color: #ff4500;
-    text-decoration: none;
-}
-
-#ad-banner a:hover {
-    text-decoration: underline;
-    color: #ff6347;
-}
-
-#ad-close-btn {
-    background-color: rgba(255, 69, 0, 0.1); 
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    margin-top: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-
-.workout-today {
-    font-size: 2em;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
     font-weight: bold;
-    color: #1e90ff;
-    text-align: center;
-    margin-bottom: 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.day:hover {
+    transform: scale(1.2);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.day.completed {
+    background: linear-gradient(45deg, #00ff00, #00cc66);
+    color: white;
+}
+
+.day.missed {
+    background: linear-gradient(45deg, #ff0000, #cc0033);
+    color: white;
 }
