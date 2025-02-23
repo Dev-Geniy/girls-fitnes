@@ -1,58 +1,38 @@
+<!DOCTYPE html>
 <html lang="ru">
-<head> 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Фитнес-тренировки для женщин</title>
-    <!-- Основной фавикон -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <!-- Для iOS (Apple Touch Icon) -->
-    <link rel="apple-touch-icon" href="favicon.ico">
-    <!-- Для Android и других платформ -->
-    <link rel="icon" sizes="192x192" href="favicon.ico">
-    <!-- Для Windows Phone -->
-    <meta name="msapplication-TileImage" content="favicon.ico">
-    <meta name="msapplication-TileColor" content="#000000">  
-    <link rel="stylesheet" href="style.css">
+    <title>Тренировки</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div id="background-image"></div>
-  <div class="container">
-  <header>
-      <h1>Фитнес для девушек</h1>
-      <p>Ежедневно заходите и получайте новые упражнения по специально разработанной программе!</p>
-  </header>
-
-      <div id="workout-container">
-        <div id="workout-today" class="workout-today"></div>
-          
-      <div class="progress-container">
-        <div class="progress-bar">
-           <span id="progress-text">Прогресс бар тренировки: 0%</span>
-           <div class="progress"></div>
-        </div>
-      </div>
-       
-      <div id="exercise-list" class="exercise-list"> 
-      <!-- Карточки упражнений будут вставлены здесь -->
-      </div>
-         
-      <!-- Слой для затемнения и отображения совета -->
-      <div id="overlay">
-      <div id="advice-container" class="advice-container">
-      <!-- Советы будут вставлены сюда -->
-      </div>
-
-      <!-- Рекламный блок в нижней части -->
-      <div id="ad-banner" class="ad-banner">
-        <p><strong>Наши тренинги в бесплатном доступe:</strong></p>
-        <p>Coach 10 дней | 5 минут в день<strong> - <a href="https://dev-geniy.github.io/lp/" target="_blank">"Путь Тимлида"</a></strong></p>
-        <p>Coach 10 дней | 5 минут в день<strong> - <a href="https://dev-geniy.github.io/lr/" target="_blank">"Личностный Рост"</a></strong></p>
-        <button id="ad-close-btn" onclick="closeAdBanner()">Скрыть анонс</button>
-      </div>
+   <!-- Элемент видео на заднем фоне -->
+    <video autoplay muted loop class="background-video">
+        <source src="your-video.mp4" type="video/mp4">
+        Ваш браузер не поддерживает видео.
+    </video>
+  
+    <div id="main-screen">
+        <h1>Сегодня <span id="current-date"></span></h1>
+        <h2 id="workout-title"></h2>
+        <button id="start-btn">Начать тренировку</button>
+        <h3>История тренировок:</h3>
+            <h3>Общее количество выполненных: <span id="total-completed">0</span></h3>
+      
+        <div id="calendar"></div>
+        <button id="reset-btn">Сбросить историю</button>
     </div>
-  </div>
-  <p class="text">Наша авторская программа тренировок помогает достичь максимальных результатов, обеспечивая оптимальную нагрузку каждый день. Программа направлена на улучшение рельефа мышц, снижение избыточной массы, повышение силы и корректировку фигуры — шаг за шагом, с каждым днем приближая вас к вашей цели.</p>
-</div>
+ 
+    <div id="workout-screen">
+        <h2 id="day-title"></h2>
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+        <div class="exercises"></div>
+        <p id="completion-message" class="hidden">Тренировка завершена...<br><br> Продолжайте в том же духе, заходите завтра!</p>
+        <button id="back-btn">Назад</button>
+    </div>
   
     <script src="script.js"></script>
 </body>
