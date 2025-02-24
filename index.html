@@ -1,24 +1,19 @@
-<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Тренировки</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-   <!-- Элемент видео на заднем фоне -->
-    <video autoplay muted loop class="background-video">
-        <source src="your-video.mp4" type="video/mp4">
-        Ваш браузер не поддерживает видео.
-    </video>
+  <div id="background-image"></div>
   
     <div id="main-screen">
         <h1>Сегодня <span id="current-date"></span></h1>
         <h2 id="workout-title"></h2>
         <button id="start-btn">Начать тренировку</button>
         <h3>История тренировок:</h3>
-            <h3>Общее количество выполненных: <span id="total-completed">0</span></h3>
+            <h3>Общее количество тренировок: <span id="total-completed">0</span></h3>
       
         <div id="calendar"></div>
         <button id="reset-btn">Сбросить историю</button>
