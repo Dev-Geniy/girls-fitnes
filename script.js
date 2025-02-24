@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('current-date').textContent = today.toLocaleDateString('ru-RU');
 
 const workouts = {
-    1: { title: "Выходной 🌿", exercises: [] },
-    0: {
+    0: { title: "Выходной 🌿", exercises: [] },
+    1: {
         title: "Ноги + Пресс",
         exercises: [
             {
