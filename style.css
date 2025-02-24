@@ -3,9 +3,9 @@
 body {
     font-family: 'Orbitron', sans-serif;
     text-align: center;
+    background: radial-gradient(circle at top, #1a1a2e, #0f0f1b);
     margin: 0;
     padding: 0;
-    height: 100%;
     color: #fff;
     overflow-x: hidden;
 }
@@ -15,16 +15,27 @@ body {
     display: none;
 }
 
-/* Контейнер для фона с видео */
-        .background-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Чтобы видео полностью покрывало экран */
-            z-index: -1; /* Видео будет на заднем фоне */
-        }
+#background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url("https://kartinki.pics/pics/uploads/posts/2022-08/1660940246_1-kartinkin-net-p-oboi-fitnes-krasivo-2.jpg") no-repeat center center;
+  background-size: cover;
+  z-index: -2;
+}
+
+/* Затемнение */
+#background-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* 50% затемнения */
+}
 
 #main-screen, #workout-screen {
     padding: 30px;
@@ -77,7 +88,7 @@ button:hover {
 }
 
 .exercise-card {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(100, 100, 100, 0.7); /* Темновато-серый фон */  
     padding: 20px;
     margin: 15px auto;
     width: 80%;
@@ -90,20 +101,23 @@ button:hover {
 .exercise-card.completed {
     background: rgba(60, 60, 60, 0.1); /* Темновато-серый фон */
     transform: scale(1.05);
+    backdrop-filter: blur(10px); /* Очень сильное размытие фона */
 }
 
 .exercise-card.completed h3, 
 .exercise-card.completed p {
-    color: lightgray; /* Светло-серый текст */
+    color: rgba(255, 255, 255, 0.4); /* Очень светлый текст с низкой прозрачностью */
+    text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2); /* Сильное замыливание */
 }
 
+
 .exercise-card.completed .complete-btn {
-    background: #ccc; /* Нейтральная кнопка */
+    background: rgba(60, 60, 60, 0.1); /* Темновато-серый фон */
     cursor: not-allowed;
 }
 
 .exercise-card.completed .complete-btn:hover {
-    background: #ccc; /* Нейтральная кнопка */
+    background: rgba(60, 60, 60, 0.1); /* Темновато-серый фон */
     cursor: not-allowed;
     box-shadow: 0px 4px 15px rgba(255, 0, 255, 0.5);
     transform: scale(1.0);
